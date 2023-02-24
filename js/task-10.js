@@ -26,20 +26,20 @@ function createBoxes() {
   const arrayLength = Number(inputEl.value);
   array.length = arrayLength;
   array.fill(0);
-  array.forEach((e, i) =>
-    document.body.insertAdjacentHTML(
-      "beforeend",
-      `<div id="boxes" 
-      style="width:${30 + 10 * i}px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height:${30 + 10 * i}px; 
-      background-color:${getRandomHexColor()}; 
-      "><span>${i + 1}</span></div>`
-    )
-  );
+  const markup =   array.map((e, i) =>
+  `<div id="boxes" 
+  style="width:${30 + 10 * i}px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:${30 + 10 * i}px; 
+  background-color:${getRandomHexColor()}; 
+  "><span>${i + 1}</span></div>`
+).join('')
+  document.body.insertAdjacentHTML("beforeEnd", markup);
 }
+
+
 
 btnDestroy.addEventListener("click", () => {
   const divElements = document.querySelectorAll("#boxes");
